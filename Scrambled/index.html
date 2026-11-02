@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrambled — Терпение против Пикселей</title>
+  <meta name="description" content="Scrambled — короткометражный анимационный фильм о конфликте цифрового нетерпения и аналоговой головоломки.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="digital-mode">
+
+<!-- Шапка с переключателем -->
+<header class="main-header">
+  <div class="logo">SCRAMBLED<span class="logo-dot">.</span></div>
+  <div class="theme-switch">
+    <span class="switch-label">Режим:</span>
+    <button id="themeToggle" class="toggle-btn">
+      <span class="icon">📱</span> Телефон
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Polder Animation · 2017 · 6 минут</p>
+    <h1 class="hero-title">SCRAMBLED</h1>
+    <p class="hero-sub">«Иногда, чтобы собрать себя, нужно перестать нажимать на экран».</p>
+    <div class="hero-buttons">
+      <a href="#video" class="btn btn-primary">Смотреть</a>
+      <a href="#plot" class="btn btn-ghost">Сюжет</a>
+    </div>
+  </div>
+  
+  <!-- Визуальный образ: Грань кубика -->
+  <div class="hero-visual">
+    <!-- Обертка для наклона мышкой -->
+    <div class="cube-container">
+      <div class="cube-face">
+        <div class="cube-square red"></div>
+        <div class="cube-square blue"></div>
+        <div class="cube-square white"></div>
+        <div class="cube-square yellow"></div>
+        <div class="cube-square green"></div>
+        <div class="cube-square orange"></div>
+        <div class="cube-square red"></div>
+        <div class="cube-square white"></div>
+        <div class="cube-square blue"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ВИДЕО -->
+<section class="section" id="video">
+  <h2 class="section-title">Просмотр</h2>
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline width="100%">
+      <source src="scrambled (1080p).mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+  </div>
+  <p class="caption">Всего 6 минут, чтобы понять: не всё в этом мире решается свайпом.</p>
+</section>
+
+<!-- СЮЖЕТ -->
+<section class="section section-alt" id="plot">
+    <div class="plot-grid">
+      <div class="prose">
+        <h2 class="section-title">О чём это?</h2>
+        <p>19-летняя Эсра опаздывает на поезд. Чтобы скоротать время в ожидании, она достаёт телефон и погружается в яркую, шумную мобильную игру.</p>
+        <p>Но её спокойствие нарушает... одушевлённый кубик Рубика. Он выбирается из кучи старого хлама на перроне и сам подкатывается к ней. Эсра раздражена: кубик требует времени, терпения и усидчивости, а она привыкла к мгновенному результату на экране.</p>
+        <p>Это история о конфликте поколений, цифровой зависимости и о том, что старые добрые головоломки всё ещё могут нас чему-то научить.</p>
+      </div>
+      <div class="plot-image">
+        <img src="images/girl1.jpg" alt="Эсра и кубик" onerror="this.src='https://via.placeholder.com/500x400/333/fff?text=Add+Image+Here'">
+      </div>
+    </div>
+  </section>
+
+<!-- ИНТЕРАКТИВНЫЙ ТАЙМЛАЙН -->
+<section class="section" id="timeline">
+  <h2 class="section-title">Этапы решения</h2>
+  <p class="section-lead">Нажмите на любую грань, чтобы увидеть, как менялось отношение Эсры к кубику.</p>
+
+  <div class="cube-grid" id="cubeGrid">
+    <button class="cube-cell" data-ep="0" style="--cell-color: #E74C3C;">1. Игнор</button>
+    <button class="cube-cell" data-ep="1" style="--cell-color: #3498DB;">2. Помеха</button>
+    <button class="cube-cell" data-ep="2" style="--cell-color: #F1C40F;">3. Контакт</button>
+    <button class="cube-cell" data-ep="3" style="--cell-color: #2ECC71;">4. Провал</button>
+    <button class="cube-cell" data-ep="4" style="--cell-color: #E67E22;">5. Терпение</button>
+    <button class="cube-cell" data-ep="5" style="--cell-color: #9B59B6;">6. Собрано!</button>
+    <button class="cube-cell" data-ep="6" style="--cell-color: #34495E;">7. По кругу</button>
+  </div>
+
+  <div class="info-panel" id="infoPanel">
+    <h3 id="infoTitle">Выберите грань</h3>
+    <p id="infoText">Каждый поворот кубика — это шаг к пониманию.</p>
+  </div>
+</section>
+
+<!-- ПЕРСОНАЖИ -->
+<section class="section section-alt" id="characters">
+    <h2 class="section-title">Участники</h2>
+    <div class="cards">
+      
+      <article class="card">
+        <div class="card-art" style="width: 100%; height: 350px; margin-bottom: 16px;">
+          <img src="images/girl.jpg" alt="Эсра" onerror="this.src='https://via.placeholder.com/300x250/333/fff?text=Esra+(Add+Image)'" style="border-radius: 6px; object-fit: cover; object-position: center 10%; width: 100%; height: 100%;">
+        </div>
+        <h3>Эсра</h3>
+        <p class="card-quote">«Скучно. Следующий уровень. Свайп».</p>
+        <p>Представитель поколения Z. Привыкла к быстрому дофамину от мобильных игр. Кубик Рубика для неё — пережиток прошлого.</p>
+      </article>
+  
+      <article class="card">
+          <div class="card-art" style="width: 100%; height: 350px; margin-bottom: 16px;">
+            <img src="images/guy.jpeg" alt="Раздражённый мужчина" style="border-radius: 6px; object-fit: cover; object-position: center 70%; width: 100%; height: 100%;">
+          </div>
+          <h3>Мужчина на скамейке</h3>
+          <p class="card-quote">«Опоздал. Всё рухнуло. Ненавижу этот день».</p>
+          <p>Он появляется в самом финале. Так же, как и Эсра, он не успел на поезд. В приступе гнева он швыряет портфель, разбрасывая бумаги. И именно в этот момент к нему подкатывается... кубик.</p>
+        </article>
+  
+    </div>
+  </section>
+
+<!-- ОБЩИЙ БЛОК: СМЫСЛ И ФИНАЛ -->
+<div class="split-wrapper">
+    <section class="section section-warm" id="meaning">
+      <h2 class="section-title">Авторский замысел</h2>
+      <div class="prose">
+        <p>Режиссер <strong>Бастиан Шравендеел</strong> построил фильм на контрасте:</p>
+        <ul>
+          <li><strong>Цифровое (Телефон):</strong> Яркое, шумное, мгновенное, но поверхностное.</li>
+          <li><strong>Аналоговое (Кубик):</strong> Пластиковое, молчаливое, требующее времени, но дающее глубокое удовлетворение.</li>
+        </ul>
+        <p>Главная мысль: мы настолько привыкли к быстрым победам на экране, что разучились получать удовольствие от процесса. Собрать кубик Рубика — значит обрести <strong>терпение</strong> и научиться справляться с фрустрацией.</p>
+      </div>
+    </section>
+  
+    <section class="section section-warm" id="ending">
+      <h2 class="section-title">Круг замкнулся</h2>
+      <div class="prose">
+        <p>Эсра собирает кубик. Но он не оживает. На перроне появляется поезд. Эсра садится в вагон и оглядывается, надеясь, что кубик всё-таки оживёт. Но он остаётся неподвижным на скамейке.</p>
+        <p>Тут на перрон выбегает мужчина. Он тоже опоздал. В приступе ярости он швыряет портфель на землю — рабочие листы разлетаются в разные стороны. Он падает на скамейку, сгорбившись от бессилия. И вдруг замечает рядом с собой... кубик Рубика. Собранный. Идеальный.</p>
+        <p>Пока кубик добирался до него, он снова рассыпался. И теперь он перемешан — как и мысли мужчины. Кубик смотрит на него, ожидая. Готов ли он начать сначала?</p>
+        <p><strong>На этом фильм заканчивается.</strong> Это открытый финал: урок терпения передаётся дальше — от того, кто справился, к тому, кто ещё борется.</p>
+      </div>
+    </section>
+  </div>
+
+<footer class="footer">
+  <p>© 2017 Polder Animation · Фанатский проект</p>
+    <!-- Кнопка скрыта по умолчанию -->
+    <button id="secretBtn" class="btn btn-primary" style="margin-top: 15px; display: none;">🎁 Открыть секрет</button>
+</footer>
+<!-- Оверлей для секретного эффекта -->
+<div id="secretOverlay" class="secret-overlay">
+    <div class="secret-text">СОБРАНО!</div>
+    <!-- Контейнер для конфетти (пикселей) -->
+    <div id="confettiContainer"></div>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>

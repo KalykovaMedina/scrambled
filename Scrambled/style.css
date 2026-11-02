@@ -1,0 +1,331 @@
+/* ---------- Базовое ---------- */
+:root {
+    /* Цвета для цифрового режима (Телефон) */
+    --bg-digital: #121212;
+    --text-digital: #E0E0E0;
+    --accent-digital: #FF0055;
+    --card-digital: #1E1E1E;
+    --font-digital: 'Roboto Mono', monospace;
+  
+    /* Цвета для аналогового режима (Кубик) */
+    --bg-analog: #F4F1EA;
+    --text-analog: #2C3E50;
+    --accent-analog: #E67E22;
+    --card-analog: #FFFFFF;
+    --font-analog: 'Montserrat', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Стилизация под Цифру */
+body.digital-mode {
+    background-color: var(--bg-digital);
+    color: var(--text-digital);
+    font-family: var(--font-digital);
+    background-image: radial-gradient(circle, rgba(255,0,85,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Стилизация под Аналог */
+body.analog-mode {
+    background-color: var(--bg-analog);
+    color: var(--text-analog);
+    font-family: var(--font-analog);
+    background-image: none;
+}
+
+/* ---------- Шапка ---------- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5vw;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.9;
+}
+.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; }
+.logo-dot { color: var(--accent-digital); transition: color 0.5s; }
+body.analog-mode .logo-dot { color: var(--accent-analog); }
+
+.theme-switch { display: flex; align-items: center; gap: 10px; }
+.switch-label { font-size: 0.9rem; opacity: 0.7; }
+.toggle-btn {
+    background: transparent;
+    border: 1px solid currentColor;
+    color: inherit;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+.toggle-btn:hover { transform: scale(1.05); }
+
+/* ---------- HERO ---------- */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px 5vw;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    margin: 0 0 10px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+.hero-sub { font-size: 1.2rem; opacity: 0.8; margin-bottom: 30px; font-style: italic; }
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s;
+    border: 2px solid currentColor;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--accent-digital); color: #fff; border-color: var(--accent-digital); }
+body.analog-mode .btn-primary { background: var(--accent-analog); border-color: var(--accent-analog); }
+.btn-ghost { background: transparent; }
+
+/* Визуал кубика */
+.hero-visual { display: flex; justify-content: center; }
+.cube-container {
+    perspective: 1000px;
+    transition: transform 0.1s ease-out; /* Плавный наклон за мышкой */
+}
+.cube-face {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(3, 60px);
+    gap: 4px;
+    padding: 4px;
+    background: #000;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: box-shadow 0.8s ease;
+    animation: floatDigital 4s ease-in-out infinite;
+}
+
+body.analog-mode .cube-face { 
+    box-shadow: 10px 20px 30px rgba(0,0,0,0.15);
+    animation: floatAnalog 5s ease-in-out infinite; 
+}
+
+@keyframes floatDigital {
+    0%, 100% { transform: translateY(0) rotate(15deg) scale(1.1); }
+    50% { transform: translateY(-10px) rotate(15deg) scale(1.1); }
+}
+@keyframes floatAnalog {
+    0%, 100% { transform: rotateX(25deg) rotateY(-25deg) translateY(0) scale(1.1); }
+    50% { transform: rotateX(25deg) rotateY(-25deg) translateY(-8px) scale(1.1); }
+}
+
+.cube-square { border-radius: 4px; }
+.cube-square.red { background: #E74C3C; }
+.cube-square.blue { background: #3498DB; }
+.cube-square.white { background: #ECF0F1; }
+.cube-square.yellow { background: #F1C40F; }
+.cube-square.green { background: #2ECC71; }
+.cube-square.orange { background: #E67E22; }
+
+/* ---------- Секции ---------- */
+.section { padding: 80px 8vw; }
+.section-alt { background: rgba(0,0,0,0.03); }
+body.digital-mode .section-alt { background: rgba(255,255,255,0.02); }
+
+.section-title { font-size: 2.2rem; margin-bottom: 30px; border-bottom: 2px solid var(--accent-digital); display: inline-block; padding-bottom: 5px; }
+body.analog-mode .section-title { border-bottom-color: var(--accent-analog); }
+
+.prose p { max-width: 800px; line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.1rem; }
+
+.video-wrap { max-width: 900px; margin: 0 auto; }
+.video-wrap video { width: 100%; border-radius: 8px; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+/* Сетка для секции Сюжет */
+.plot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.plot-image img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.4s; }
+.plot-image img:hover { transform: scale(1.02); }
+
+/* ---------- Сетка кубика (Таймлайн) ---------- */
+.cube-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 30px; }
+
+.cube-cell {
+    background-color: var(--card-digital);
+    color: var(--text-digital);
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 30px 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+}
+body.analog-mode .cube-cell { background-color: var(--card-analog); border-color: #ddd; color: var(--text-analog); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+.cube-cell:hover, .cube-cell.active {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--cell-color);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 0 15px var(--cell-color);
+}
+body.digital-mode .cube-cell:hover, body.digital-mode .cube-cell.active {
+    box-shadow: 0 0 25px var(--cell-color);
+}
+.cube-cell:focus { outline: none; }
+
+.info-panel {
+    background: var(--card-digital);
+    padding: 30px;
+    border-radius: 8px;
+    border-left: 5px solid var(--accent-digital);
+    min-height: 150px;
+}
+body.analog-mode .info-panel { background: var(--card-analog); border-left-color: var(--accent-analog); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+/* ---------- Карточки персонажей ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.card {
+    background: var(--card-digital);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: transform 0.3s;
+}
+body.analog-mode .card { background: var(--card-analog); border-color: #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.card:hover { transform: translateY(-5px); }
+.card h3 { margin-top: 0; font-size: 1.5rem; }
+.card-quote { font-style: italic; color: var(--accent-digital); margin-bottom: 15px; font-weight: 600; }
+body.analog-mode .card-quote { color: var(--accent-analog); }
+
+/* ---------- Две колонки (Смысл + Финал) ---------- */
+.split-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 80px 8vw;
+    background: rgba(0,0,0,0.02);
+}
+body.digital-mode .split-wrapper { background: rgba(255,255,255,0.02); }
+.split-wrapper .section { padding: 0; background: transparent; border: none; }
+
+/* ---------- Футер ---------- */
+.footer { text-align: center; padding: 40px; border-top: 1px solid rgba(128,128,128,0.2); margin-top: 40px; }
+.footer a { color: inherit; }
+
+/* =========================================
+   АНИМАЦИИ
+   ========================================= */
+
+/* Плавное появление секций при скролле */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* Эффект "Глитча" для заголовка (Цифровой режим) */
+body.digital-mode .hero-title {
+    position: relative;
+    animation: glitch 3s infinite;
+}
+@keyframes glitch {
+    0%, 100% { text-shadow: none; transform: translate(0); }
+    2% { text-shadow: 2px 0 var(--accent-digital), -2px 0 #00FFFF; transform: translate(1px, 0); }
+    4% { text-shadow: -2px 0 var(--accent-digital), 2px 0 #00FFFF; transform: translate(-1px, 0); }
+    6% { text-shadow: none; transform: translate(0); }
+}
+
+/* Анимация тряски при сбросе */
+.shake { animation: shakeAnim 0.5s ease-in-out; }
+@keyframes shakeAnim {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/* ---------- Адаптив ---------- */
+@media (max-width: 900px) {
+    .plot-grid, .split-wrapper { grid-template-columns: 1fr; }
+    .split-wrapper { gap: 60px; }
+}
+@media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding-top: 50px; }
+    .hero-buttons { justify-content: center; }
+    .hero-visual { display: none; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  /* ---------- Секретный эффект ---------- */
+.secret-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--accent-analog); /* Оранжевый цвет */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none; /* Чтобы не блокировать клики, пока скрыт */
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .secret-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .secret-text {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: scale(0.5);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s;
+  }
+  
+  .secret-overlay.active .secret-text {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  /* Анимация для падающих пикселей (конфетти) */
+  .confetti-pixel {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    top: -20px;
+    animation: fall linear forwards;
+  }
+  
+  @keyframes fall {
+    to {
+      transform: translateY(110vh) rotate(720deg);
+    }
+  }
+  
